@@ -72,6 +72,24 @@ Chirper is a microblogging platform that I got from [Laravel Bootcamp](https://b
 2. Declare that Chirp model belongsTo User model.
 3. Update index.blade to have a for-loop that will display data from the database.
 
+## Editing Chirps
+
+1. Add edit and update routes in the ChirpController.
+    - EDIT = shows the form
+    - UPDATE = accepts data
+2. Update index.blade to have an edit button.
+3. Update the edit and update function inside ChirpController to display and receive data.
+
+4. Make a Form Validation Request to reduce redundant data:
+      ```bash
+      php artisan make:request ValidationName
+
+5. Make authorization for security:
+      ```bash
+      php artisan make:policy ChirpPolicy --model=Chirp
+
+6. Write authorization for who can access the data inside ChirpPolicy::update.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

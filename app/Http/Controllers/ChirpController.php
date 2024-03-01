@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chirp;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidateChirpRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class ChirpController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index() : View
     {
         return view('chirps.index', [
             'chirps' => Chirp::with('user')->latest()->get(),
@@ -31,13 +32,9 @@ class ChirpController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(ValidateChirpRequest $request) : RedirectResponse
     {
-        $validated = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
-
-        $request->user()->chirps()->create($validated);
+        $request->user()->chirps()->create($request->validated());
 
         return redirect(route('chirps.index'));
     }
@@ -53,17 +50,25 @@ class ChirpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chirp $chirp)
+    public function edit(Chirp $chirp) : View
     {
-        //
+        $this->authorize('update', $chirp);
+
+        return view('chirps.edit', [
+            'chirp' => $chirp,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chirp $chirp)
+    public function update(ValidateChirpRequest $request, Chirp $chirp) : RedirectResponse
     {
-        //
+        $this->authorize('update', $chirp);
+
+        $chirp->update($request->validated());
+
+        return redirect(route('chirps.index'));
     }
 
     /**

@@ -97,6 +97,28 @@ Chirper is a microblogging platform that I got from [Laravel Bootcamp](https://b
 3. Update delete function in the ChirpPolicy.
 4. Update index.blade to have a delete button.
 
+## Notifications and Events
+
+1. Create a notification:
+      ```bash
+      php artisan make:notification NewChirp
+
+2. Update NewChirp::toMail to include subject, greeting, and line
+
+3. Make an event:
+      ```bash
+      php artisan make:event ChirpCreated
+
+4. Add Chirp model inside the parameter of __construct
+5. create $dispatchesEvents in Chirp model
+
+6. Create Event Listener:
+      ```bash
+      php artisan make:listener SendChirpCreatedNotifications --event=ChirpCreated
+
+7. Implement ShouldQueue in the event listener
+8. Add the event listener to EventServiceProvider::class
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

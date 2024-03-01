@@ -66,6 +66,12 @@ Chirper is a microblogging platform that I got from [Laravel Bootcamp](https://b
       ```bash
       php artisan tinker
 
+## Showing Chirps
+
+1. Update ChirpController::index with array data that points to database.
+2. Declare that Chirp model belongsTo User model.
+3. Update index.blade to have a for-loop that will display data from the database.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

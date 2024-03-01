@@ -90,6 +90,13 @@ Chirper is a microblogging platform that I got from [Laravel Bootcamp](https://b
 
 6. Write authorization for who can access the data inside ChirpPolicy::update.
 
+## Deleting Chirps
+
+1. Add destroy route in the ChirpController.
+2. Update the delete function inside ChirpController.
+3. Update delete function in the ChirpPolicy.
+4. Update index.blade to have a delete button.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

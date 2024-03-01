@@ -44,6 +44,28 @@ Chirper is a microblogging platform that I got from [Laravel Bootcamp](https://b
       ```bash
       php artisan migrate
 
+## Creating Chirps
+
+1. Create a model with migration and resource controller:
+      ```bash
+      php artisan make:model -mrc Chirp
+
+2. Create routing in web.php to connect to (index) and (store).
+3. Create a function in ChirpController::index that points to a view.
+4. Make a blade template for (index). 
+5. Create a function in ChirpController::store that has validation and DB create.
+6. Declare that User model hasMany relationship with Chirp model.
+7. Put (fillable) in Chirp model to allow mass assignment.
+8. Fill up chirps migration table with columns.
+
+9. Migrate everything to database
+      ```bash
+      php artisan migrate
+
+10. Use tinker for DB debugging (Optional)
+      ```bash
+      php artisan tinker
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
